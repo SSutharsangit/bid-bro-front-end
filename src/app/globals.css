@@ -2,32 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+
+body{
+  background-color: #eff6ff !important;
+}
+
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary-color: #8006be;
+  --background-color: #F5FFFD;
+  --primary-button-hover-color: rgb(6, 36, 80);
+  --box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.10), 0px 4px 6px 0px rgba(0, 0, 0, 0.05);
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-radius: 20px !important;
+  border-color: var(--primary-color) !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.btn-secondary {
+  color: var(--primary-color) !important;
+  background-color: #e3f2f7 !important;
+  border: none !important;
+  box-shadow: 0 4px 9px -4px #e3ebf7 !important;
+  text-align: center !important;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500 !important;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.btn-primary:hover {
+  background-color: var(--primary-button-hover-color) !important;
+}
+
+.btn-secondary:hover {
+  background-color: #cfd3d4 !important;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+/* Define styles for the custom toast */
+.custom-toast {
+  background-color: #8006be !important;
+  color: #fff !important;
+}
+
+/* Define styles for the progress bar inside the toast */
+.custom-progress-bar {
+  background-color: #8006be !important;
+}
+
+/* Define styles for the icon inside the toast */
+.custom-toast .Toastify__toast-icon svg {
+  fill: #fff !important; /* Change the checkmark color */
 }
