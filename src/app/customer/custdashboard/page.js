@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Carousel from "@/app/widgets/carosel/carousel";
 import Startnav from '@/app/widgets/startnav/page';
 import Startfooter from '@/app/widgets/startfooter/page';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 export default function Home() {
   const [categories, setCategories] = useState([
@@ -64,6 +65,8 @@ export default function Home() {
     <div className='h-full w-full' >
       <Startnav />
       <div className=" flex flex-col justify-center container mx-auto p-4">
+      <Chatbot />
+
         <h2 className="text-2xl font-bold mb-4 text-center">Our Portfolio</h2>
         <div className=' justify-center items-center '>
           <Carousel images={['/images/portfolio1.webp', '/images/portfolio2.jpg', '/images/portfolio1.webp']} />

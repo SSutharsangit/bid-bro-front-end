@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '../../widgets/navbar/navbar';
 import Footer from '@/app/widgets/footer/footer';
 import Carousel from "@/app/widgets/carosel/carousel";
+import Chatbot from '@/app/widgets/chatbot/page';
 
 export default function Home() {
   const [categories, setCategories] = useState([
@@ -65,6 +66,8 @@ export default function Home() {
     <div className='h-full w-full' >
       <Navbar />
       <div className=" flex flex-col justify-center container mx-auto p-4">
+      <Chatbot />
+
         <h2 className="text-2xl font-bold mb-4 text-center">Our Portfolio</h2>
         <div className=' justify-center items-center '>
           <Carousel images={['/images/portfolio1.webp', '/images/portfolio2.jpg', '/images/portfolio1.webp']} />

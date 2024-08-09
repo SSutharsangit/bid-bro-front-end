@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Navbar from '@/app/widgets/navbar/navbar';
 import Review from '../../widgets/review/review';
 import Footer from '@/app/widgets/footer/footer';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 function Pages() {
 
@@ -10,6 +11,7 @@ function Pages() {
     <div className=''>
       <Navbar />
       <div className='p-2' style={{ position: '' }} >
+        <Chatbot />
       <div className='font-bold fs-2 text-3xl ml-12 mt-3 ms-3'>iPhone 12</div>
 
         <div className=' row p-8'>

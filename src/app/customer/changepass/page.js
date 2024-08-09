@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Navbar from '@/app/widgets/navbar/navbar';
 import Footer from '@/app/widgets/footer/footer';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 const ChangePasswordPage = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -40,6 +41,8 @@ const ChangePasswordPage = () => {
     <div className="relative min-h-screen">
       <Navbar />
 <div className="absolute top-0 left-0 w-1/3 h-2/3"> {/* Adjust the width and height as needed */}
+<Chatbot />
+
   <Image
     src="/bb.jpg" // Ensure the image path is correct
     alt="Profile"

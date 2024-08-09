@@ -5,6 +5,7 @@ import { GetAuctionDetails } from '../../../../redux/action/bidnotification';
 import { useRouter } from 'next/navigation';
 import Footer from '@/app/widgets/footer/footer';
 import Navbar from '@/app/widgets/navbar/navbar';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 function Pages() {
   const router=useRouter();
@@ -29,6 +30,8 @@ function Pages() {
     <div className='h-full w-full' >
       <Navbar />
       <div className='p-24 flex flex-col md:flex-row'>
+      <Chatbot />
+
         {/* Product Details */}
         <div className='flex flex-col w-full md:w-1/3 gap-8 items-center'>
           <div className='text-3xl font-bold'>{auction.productName}</div>
@@ -45,15 +48,15 @@ function Pages() {
             <div className='grid grid-cols-1 md:grid-cols-2 bg-white p-5 rounded-3xl lg:grid-cols-3 gap-6'style={{ borderBottom: '6px solid  #8006be' }}>
               <div className='flex justify-start gap-2'>
                 <div className='font-bold'>No of Units:-</div>
-                <div>{auction.noOfUnits}</div>
+                <div>1</div>
               </div>
               <div className='flex justify-start gap-2'>
                 <div className='font-bold'>Expected Price:-</div>
-                <div>{auction.startingPrice}</div>
+                <div>180000</div>
               </div>
               <div className='flex justify-start gap-2'>
                 <div className='font-bold'>Description:-</div>
-                <div>{auction.description}</div>
+                <div>i want red colour</div>
               </div>
             </div>
           </div>

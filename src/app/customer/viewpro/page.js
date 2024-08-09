@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-// import StarRating from '../../../components/StarRating';
 
 import Footer from '@/app/widgets/footer/footer';
 import Navbar from '@/app/widgets/navbar/navbar';

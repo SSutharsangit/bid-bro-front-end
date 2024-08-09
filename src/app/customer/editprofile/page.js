@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Navbar from '@/app/widgets/navbar/navbar';
 import Footer from '@/app/widgets/footer/footer';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 const sampleProfile = {
   profilePicture: '/images/1.jpg',
@@ -32,6 +33,8 @@ const ProfileEditPage = () => {
     <div>
       <Navbar />
       <div className="flex justify-center items-center p-6">
+      <Chatbot />
+
         <div className="bg-[#d7d1e6] p-6 rounded-lg shadow-lg flex w-full max-w-2xl">
 
           <div className="w-1/3 pr-6 flex items-center justify-center">

@@ -6,6 +6,7 @@ import Navbar from '../../widgets/navbar/navbar'; // Adjusted path to navbar com
 import Footer from '@/app/widgets/footer/footer';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 
 
@@ -17,6 +18,8 @@ function Pages() {
         <div className='h-full w-full' >
             <Navbar />
             <div className='p-10 flex flex-col md:flex-row'>
+        <Chatbot />
+
                 <div className='flex mt-10 mb-12 flex-col w-full  pt-10'>
                     <div className='text-3xl font-bold'>Your Details</div>
                     <br />

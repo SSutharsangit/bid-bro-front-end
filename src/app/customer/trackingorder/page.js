@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for react-toastify
 import Footer from '@/app/widgets/footer/footer';
 import Navbar from "@/app/widgets/navbar/navbar";
+import Chatbot from '@/app/widgets/chatbot/page';
 function Pages() {
     const router = useRouter();
     const [showModal, setShowModal] = useState(false);
@@ -21,6 +22,8 @@ function Pages() {
             <ToastContainer /> {/* Ensure this is included */}
             <Navbar />
             <div className='p-24 flex flex-col md:flex-row'>
+      <Chatbot />
+
                 {/* Product Details */}
                 <div className='flex flex-col w-full md:w-1/3 gap-8 items-center'>
                     <div className='text-3xl font-bold'>iPhone</div>

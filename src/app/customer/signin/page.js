@@ -1,4 +1,5 @@
 "use client";
+import Chatbot from '@/app/widgets/chatbot/page';
 import Startfooter from '@/app/widgets/startfooter/page';
 import Startnav from '@/app/widgets/startnav/page';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,6 +13,8 @@ export default function SignIn() {
       <Startnav />
 
       <div className="container p-24 mt-5">
+      <Chatbot />
+
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">

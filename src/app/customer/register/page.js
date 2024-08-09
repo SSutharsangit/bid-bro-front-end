@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Startnav from "@/app/widgets/startnav/page";
 import Startfooter from "@/app/widgets/startfooter/page";
+import Chatbot from "@/app/widgets/chatbot/page";
 
 export default function Checkout() {
   const [details, setdetails] = useState({
@@ -123,6 +124,8 @@ export default function Checkout() {
     <div className='h-full w-full'>
       <Startnav />
       <div className="container mx-auto p-10">
+      <Chatbot />
+
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
           <div className="bg-white shadow-md rounded-lg p-8">
             <h1 className="text-2xl font-bold mb-4">Register</h1>

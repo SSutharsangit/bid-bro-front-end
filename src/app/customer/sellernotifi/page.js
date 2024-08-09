@@ -3,6 +3,7 @@ import NotificationBar from '../../widgets/notificationbar/page';
 import Footer from '@/app/widgets/footer/footer';
 import Navbar from '@/app/widgets/navbar/navbar';
 import Image  from 'next/image';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 
 
@@ -87,7 +88,6 @@ const SellerNotificationPage = () => {
     <div>
       <Navbar />
       <div className=" min-h-screen flex  items-center">
-      
       <div className="w-full max-w-6xl px-4 mt-8">
         <NotificationBar notifications={notifications} onViewMore={handleViewMore} />
       </div>

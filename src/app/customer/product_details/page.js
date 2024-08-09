@@ -5,6 +5,7 @@ import Navbar from '@/app/widgets/navbar/navbar';
 import AuctionModal from '../auction/page'; // Adjust the path as needed
 import { useRouter } from 'next/navigation';
 import Footer from '@/app/widgets/footer/footer';
+import Chatbot from '@/app/widgets/chatbot/page';
 
 function Pages() {
   const router = useRouter();
@@ -16,6 +17,8 @@ function Pages() {
     <div className='h-full w-full' >
       <Navbar />
       <div className='p-20 mt-28 flex'>
+      <Chatbot />
+
         <div className='flex flex-col w-1/3 gap-8 items-center'>
           <div className='text-3xl font-bold'>iPhone</div>
           <div className='flex rounded-3xl shadow-xl '>
