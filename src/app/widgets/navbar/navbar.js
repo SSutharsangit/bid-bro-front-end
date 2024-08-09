@@ -98,7 +98,7 @@ const Navbar = () => {
                 <Link href="/customer/favorites" className="text-gray-600 cursor-pointer">
                   <HeartIcon className="w-6 h-6" />
                 </Link>
-                <Link href="/customer/bidding_details" className="text-gray-600 cursor-pointer">
+                <Link href="/customer/notiproductbid" className="text-gray-600 cursor-pointer">
                   <BellIcon className="w-6 h-6" />
                 </Link>
                 <Link href="/customer/profile" className="text-gray-600 cursor-pointer">
