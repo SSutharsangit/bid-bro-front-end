@@ -22,12 +22,12 @@ const AuctionModal = ({ setShowModal }) => {
         } else {
             const data = {
                 "productName": "iPhone",
-                "startingPrice": formData.price,
+                "expectedPrice": formData.price,
                 "noOfUnits": count,
                 "description": formData.description
             }
             AddAuctionMethod(data, (res) => {
-                if (res?.status == 201) {
+                if (res?.status == 200) {
                     setsucess("sucessfully added")
                     setIsButtonDisabled(true); // Disable the button on success
                 } else {
@@ -53,7 +53,7 @@ const AuctionModal = ({ setShowModal }) => {
     };
     const [count, setCount] = useState(1);
     const handleIncrement = () => {
-        setCount(prevCount => (prevCount < 9 ? prevCount + 1 : prevCount));
+        setCount(prevCount => (prevCount < 20 ? prevCount + 1 : prevCount));
     };
     const handleDecrement = () => {
         setCount(prevCount => (prevCount > 1 ? prevCount - 1 : prevCount));
@@ -88,7 +88,7 @@ const AuctionModal = ({ setShowModal }) => {
                             <div className=" p-5 rounded-3xl shadow-xl">
                                 <div className="font-bold text-2xl">No of Units</div>
                                 <div className='bg-white rounded-3xl'>
-                                    <div className="font-bold text-2xl d-flex justify-content-evenly " style={{
+                                    <div className="font-bold text-2xl flex justify-evenly " style={{
                                         border_radius: '20px',
                                         box_shadow: '0 5px 10px rgba(0,0,0,0.2)'
                                     }}>
@@ -101,7 +101,7 @@ const AuctionModal = ({ setShowModal }) => {
                                             border_right: '2px solid rgba(0,0,0,0.2)',
                                             border_left: '2px solid rgba(0,0,0,0.2)',
                                             pointer_events: 'none'
-                                        }}>{count < 10 ? `0${count}` : count}</span>
+                                        }}>{count < 20 ? `${count}` : count}</span>
                                         <span className="plus" onClick={handleIncrement} style={{
                                             text_align: 'center',
                                             cursor: 'pointer',

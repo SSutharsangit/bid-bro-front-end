@@ -16,7 +16,7 @@ function Pages() {
         <div className='h-full w-full' >
             <Navbar />
             <div className='p-28 flex'>
-        <Chatbot />
+                <Chatbot />
 
                 <div className='flex flex-col  gap-8 items-center'>
                     <div className='text-3xl font-bold'>Notifications</div>
@@ -36,8 +36,8 @@ function Pages() {
                                 <div>185000</div>
                             </div>
                             <button className='btn rounded-full border-dark rounded-pill btn-primary' onClick={() => router.push("/customer/bidding_details")}>
-                            Show Bids
-                        </button>
+                                Show Bids
+                            </button>
                         </div>
                     </div>
                     <div className=' rounded-3xl flex flex-col m-1 p-2'>
@@ -53,8 +53,8 @@ function Pages() {
                                 <div>240000</div>
                             </div>
                             <button className='btn  btn-primary' onClick={() => router.push("/customer/bidding_details")}>
-                            Show bids
-                        </button>
+                                Show bids
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -109,7 +109,7 @@ function Pages() {
                 overflow: 'hidden',
               }}>
                 <Image
-                  src="/1.jpg"
+                  src="/images/1.jpg"
                   alt="Profile Photo"
                   width={80}
                   height={80}

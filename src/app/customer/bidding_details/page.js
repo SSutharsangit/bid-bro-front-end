@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { GetAuctionDetails } from '../../../../redux/action/bidnotification';
+import { GetAuctionDetails } from '../../../../redux/action/bidding_details';
 import { useRouter } from 'next/navigation';
 import Footer from '@/app/widgets/footer/footer';
 import Navbar from '@/app/widgets/navbar/navbar';
@@ -52,7 +52,7 @@ function Pages() {
               </div>
               <div className='flex justify-start gap-2'>
                 <div className='font-bold'>Expected Price:-</div>
-                <div>{auction.startingPrice}</div>
+                <div>{auction.expectedPrice}</div>
               </div>
               <div className='flex justify-start gap-2'>
                 <div className='font-bold'>Description:-</div>
@@ -69,7 +69,7 @@ function Pages() {
               <button type="button" className="btn btn-primary rounded-3xl">Cancel</button>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-              {/* Seller Cards */}
+              
               {[
                 { seller: 'Seller 1', price: '179,000', save: '6,000', mrp: '185,000.00' }
               ].map((item, index) => (
@@ -84,7 +84,6 @@ function Pages() {
                     <div>You save</div>
                     <div>Rs.{item.save}</div>
                   </div>
-                  {/* <a href="http://localhost:3001/place_order" className="btn btn-primary rounded-3xl w-full mt-3">Accept</a> */}
                   <button className='btn btn-primary' onClick={()=>router.push("/customer/place_order")}>Accept</button>
                 </div>
               ))}

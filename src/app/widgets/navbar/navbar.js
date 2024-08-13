@@ -21,8 +21,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="relative flex items-center justify-between flex-wrap p-6">
-        <div className="flex items-center flex-shrink-0 mr-6 sm:mr-4">
+      <nav className="relative flex items-center justify-between flex-wrap p-2">
+        <div className="flex items-center flex-shrink-0">
           <Link href="/customer/home">
             <div className='flex space-x-4'>
               <Image
@@ -38,67 +38,66 @@ const Navbar = () => {
           </h1>
         </div>
         <div className="flex items-center sm:mr-2 relative">
-          <div className="px-1 py-1 border border-gray-300 rounded-md flex items-center focus-within:ring-2 focus-within:ring-blue-500 transition-all duration-300">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-1 py-1.5 w-full outline-none"
-            />
-            <FontAwesomeIcon icon={faSearch} className="text-gray-400 ml-2" />
-          </div>
         </div>
         <div className="block lg:hidden">
           <button
             onClick={toggleMenu}
             className="flex items-center px-3 py-2 border rounded border-gray-400 hover:border-white"
           >
-            <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
           </button>
         </div>
         <div className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${isOpen ? 'block' : 'hidden'}`}>
           <div className="text-sm lg:flex-grow">
-
             <div className="container mx-auto px-4 py-6 flex items-center">
-              <Link
-                href="/customer/home"
-                className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
-                <HomeIcon className="w-6 h-6" />
-                <span>Home</span>
-              </Link>
-              
-              <Link
-                href="/customer/order"
-                className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
-                <ShoppingCartIcon className="w-6 h-6" />
-                <span>Order History</span>
-              </Link>
-              <Link
-                href="/customer/notiproductbid"
-                className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
-                <BellIcon className="w-6 h-6" />
-                <span>Bid Notification</span>
-              </Link>
-              <Link
-                href="/customer/trackingorder"
-                className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
-                <ShoppingCartIcon className="w-6 h-6" />
-                <span>Tracking Order</span>
-              </Link>
-
-              <Link
-                href="/customer/aboutus"
-                className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
-                <SupportIcon className="w-6 h-6" />
-                <span>AboutUs</span>
-              </Link>
+              <div className="flex items-center space-x-4 ml-auto">
+              <div className="px-1 py-1 border border-gray-300 rounded-md flex items-center focus-within:ring-2 focus-within:ring-blue-500 transition-all duration-300">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="px-1 py-1.5 w-full outline-none"
+            />
+            {/* <input type="text" placeholder="Search.." name="search" />
+            <button type="submit"><i class="fa fa-search"></i></button> */}
+            <FontAwesomeIcon icon={faSearch} className="text-gray-400 ml-2" />
+          </div>
+              </div>
+              <div className="flex items-center space-x-4 ml-auto">
+                <Link
+                  href="/customer/home"
+                  className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
+                  <HomeIcon className="w-6 h-6" />
+                  <span>Home</span>
+                </Link>
+                <Link
+                  href="/customer/order"
+                  className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
+                  <ShoppingCartIcon className="w-6 h-6" />
+                  <span>Order History</span>
+                </Link>
+                <Link
+                  href="/customer/bidnotification"
+                  className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
+                  <BellIcon className="w-6 h-6" />
+                  <span>Notification</span>
+                </Link>
+                <Link
+                  href="/customer/trackingorder"
+                  className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
+                  <ShoppingCartIcon className="w-6 h-6" />
+                  <span>Tracking Order</span>
+                </Link>
+                <Link
+                  href="/customer/aboutus"
+                  className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
+                  <SupportIcon className="w-6 h-6" />
+                  <span>AboutUs</span>
+                </Link>
+              </div>
               <div className="flex items-center space-x-4 ml-auto">
                 <Link href="/customer/favorites" className="text-gray-600 cursor-pointer">
                   <HeartIcon className="w-6 h-6" />
                 </Link>
-                <Link href="/customer/notiproductbid" className="text-gray-600 cursor-pointer">
+                <Link href="/customer/bidnotification" className="text-gray-600 cursor-pointer">
                   <BellIcon className="w-6 h-6" />
                 </Link>
                 <Link href="/customer/profile" className="text-gray-600 cursor-pointer">
@@ -106,7 +105,6 @@ const Navbar = () => {
                 </Link>
                 <Link href="/customer/signin" className="text-purple-800 font-bold text-lg flex items-center space-x-2 italic">
                   <LogoutIcon className="w-6 h-6" />
-                  <span></span>
                 </Link>
               </div>
             </div>
