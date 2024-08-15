@@ -39,7 +39,7 @@ function HomePage() {
         {
             title: "iPhone15",
             description: "Women's Needs",
-            price: "$24.00",
+            price: "450000.00",
             image: "/images/iphone15.webp", // Replace with actual image path
             category: "Mobile Phones"
 
@@ -47,9 +47,10 @@ function HomePage() {
         {
             title: "iPhone12",
             description: "Energy & Immune Support",
-            price: "$20.00",
+            price: "240000.00",
             image: "/images/iphone.jpg", // Replace with actual image path
             category: "Mobile Phones"
+
 
         },
         // ... other products
@@ -89,7 +90,7 @@ function HomePage() {
                             <h2 className="text-xl font-bold">{product.title}</h2>
                             <p>{product.description}</p>
                             <p className="text-red-500 font-bold">{product.price}</p>
-                            <button className='btn btn-primary text-white font-bold py-2 px-4 rounded' onClick={() => router.push("/customer/product_details")}>
+                            <button className='btn p-2 btn-primary text-white font-bold py-2 px-4 rounded' onClick={() => router.push("/customer/product_details")}>
                                 BiD
                             </button>
                         </div>
@@ -106,7 +107,7 @@ function HomePage() {
                             <h2 className="text-xl font-bold">{product.title}</h2>
                             <p>{product.description}</p>
                             <p className="text-red-500 font-bold">{product.price}</p>
-                            <button className='btn btn-primary text-white font-bold py-2 px-4 rounded' onClick={() => router.push("/customer/product_details")}>
+                            <button className='btn p-2 btn-primary text-white font-bold py-2 px-4 rounded' onClick={() => router.push("/customer/product_details")}>
                                 BiD
                             </button>
                         </div>
@@ -120,7 +121,7 @@ function HomePage() {
                             <h2 className="text-xl font-bold">{product.title}</h2>
                             <p>{product.description}</p>
                             <p className="text-red-500 font-bold">{product.price}</p>
-                            <button className='btn btn-primary text-white font-bold py-2 px-4 rounded' onClick={() => router.push("/customer/product_details")}>
+                            <button className='btn p-2 btn-primary text-white font-bold py-2 px-4 rounded' onClick={() => router.push("/customer/product_details")}>
                                 BiD
                             </button>
                         </div>

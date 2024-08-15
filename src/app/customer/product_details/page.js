@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Navbar from '@/app/widgets/navbar/navbar';
 import AuctionModal from '../auction/page'; // Adjust the path as needed
+import GetAllProduct from '../auction/page'; // Adjust the path as needed
 import { useRouter } from 'next/navigation';
 import Footer from '@/app/widgets/footer/footer';
 import Chatbot from '@/app/widgets/chatbot/page';
@@ -45,14 +46,14 @@ function Pages() {
               </div>
             </div>
             <div className='rounded-3xl shadow-xl'>
-              <button onClick={() => setShowModal(true)} className='btn rounded-full border-dark rounded-pill btn-primary'>
+              <button onClick={() => setShowModal(true)} className='btn p-2 rounded-full border-dark rounded-pill btn-primary'>
                 Get Best Price
               </button>
 
             </div>
           </div>
           <div className='bg-white rounded-3xl flex flex-col m-3 p-5' style={{ borderBottom: '6px solid  #8006be' }}>
-            <div className='text-2xl font-bold'>Details</div>
+            <div className='text-2xl font-bold'>About</div>
             <div className='flex justify-start gap-2'>
               <div className='font-bold'>Warranty:</div>
               <div>12.Month</div>

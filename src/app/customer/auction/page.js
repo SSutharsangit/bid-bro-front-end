@@ -144,7 +144,7 @@ const AuctionModal = ({ setShowModal }) => {
                             </div>
                         </div>
                         <div className="flex justify-around items-center gap-8">
-                            <button onClick={handleButtonClick} className=' btn btn-primary rounded-3xl p-2 font-bold'
+                            <button onClick={handleButtonClick} className=' btn p-2 btn-primary rounded-3xl p-2 font-bold'
                                 disabled={isButtonDisabled}
                             >
                                 Start Auction

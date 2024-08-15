@@ -66,7 +66,7 @@ function Pages() {
                 <div className='text-2xl font-bold'>SELLER BIDDING LIST</div>
                 <div className='text-primary'>Sellers with 4+ ratings are 80% more likely to win a bid.</div>
               </div>
-              <button type="button" className="btn btn-primary rounded-3xl">Cancel</button>
+              <button type="button" className="btn p-2 btn-primary rounded-3xl">Cancel</button>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               
@@ -84,7 +84,7 @@ function Pages() {
                     <div>You save</div>
                     <div>Rs.{item.save}</div>
                   </div>
-                  <button className='btn btn-primary' onClick={()=>router.push("/customer/place_order")}>Accept</button>
+                  <button className='btn p-2 btn-primary' onClick={()=>router.push("/customer/place_order")}>Accept</button>
                 </div>
               ))}
             </div>

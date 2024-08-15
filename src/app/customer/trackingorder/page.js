@@ -87,7 +87,7 @@ function Pages() {
                                         <div>Total amount</div>
                                         <div className='font-bold'>{item.price}</div>
                                     </div>
-                                    <button onClick={handleButtonClick} className='btn rounded-full border-dark rounded-pill btn-primary'>
+                                    <button onClick={handleButtonClick} className='btn p-2 rounded-full border-dark rounded-pill btn-primary'>
                                         Confirm Received
                                     </button>
                                 </div>

@@ -24,15 +24,15 @@ export default function SignIn() {
               <div className="card-body">
                 <form>
                   <div className="mb-3">
-                    <label htmlFor="loginEmail" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="loginEmail" placeholder="Enter your email" />
+                    <label htmlFor="loginEmail" className="form-label">Name</label>
+                    <input type="name" className="form-control" id="name" placeholder="Enter your Name" />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="loginPassword" className="form-label">Password</label>
                     <input type="password" className="form-control" id="loginPassword" placeholder="Enter your password" />
                   </div>
                   <div className='flex justify-between items-center'>
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-primary p-2">
                       Sign In
                     </button>
                     <Link

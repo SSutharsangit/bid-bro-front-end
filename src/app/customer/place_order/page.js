@@ -48,7 +48,7 @@ function Pages() {
                       <div>Total Amount :</div>
                       <div className='font-bold'>Rs.179500.00</div>
                     </div>
-                    <button className='btn rounded-full border-dark rounded-pill btn-primary'>
+                    <button className='btn p-2 rounded-full border-dark rounded-pill btn-primary'>
                       Accept Bid
                     </button>
                   </div>

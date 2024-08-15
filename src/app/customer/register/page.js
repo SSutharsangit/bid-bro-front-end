@@ -153,7 +153,7 @@ export default function Checkout() {
                   />
                 </div>
               ))}
-              <button type="submit" className="btn btn-primary w-full font-bold py-2 px-4 rounded">
+              <button type="submit" className="btn p-2 btn-primary w-full font-bold py-2 px-4 rounded">
                 Sign-Up
               </button>
               <div className="flex justify-between items-center">
