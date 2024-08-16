@@ -2,7 +2,7 @@ import HttpInterceptor from "../../services/HttpInterceptor.js";
 
 const http = new HttpInterceptor();
 
-export const GetAllProduct = (callback) => {
+export const GetProductDetails = (callback) => {
   const endpoint = `${process.env.api_base_url}/product/get`;
   try {
     http

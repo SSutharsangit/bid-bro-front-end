@@ -27,7 +27,7 @@ const AuctionModal = ({ setShowModal }) => {
                 "description": formData.description
             }
             AddAuctionMethod(data, (res) => {
-                if (res?.status == 200) {
+                if (res?.status >= 200 && res?.status < 300) {
                     setsucess("sucessfully added")
                     setIsButtonDisabled(true); // Disable the button on success
                 } else {
@@ -36,6 +36,7 @@ const AuctionModal = ({ setShowModal }) => {
             })
         }
     };
+    
     const [formData, setFormData] = useState({
         price: "",
         description: ""
@@ -144,7 +145,7 @@ const AuctionModal = ({ setShowModal }) => {
                             </div>
                         </div>
                         <div className="flex justify-around items-center gap-8">
-                            <button onClick={handleButtonClick} className=' btn p-2 btn-primary rounded-3xl p-2 font-bold'
+                            <button onClick={handleButtonClick} className=' btn btn-primary rounded-3xl p-2 font-bold'
                                 disabled={isButtonDisabled}
                             >
                                 Start Auction

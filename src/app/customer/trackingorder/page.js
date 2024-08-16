@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for react-toas
 import Footer from '@/app/widgets/footer/footer';
 import Navbar from "@/app/widgets/navbar/navbar";
 import Chatbot from '@/app/widgets/chatbot/page';
+
+
 function Pages() {
     const router = useRouter();
     const [showModal, setShowModal] = useState(false);
@@ -22,8 +24,7 @@ function Pages() {
             <ToastContainer /> {/* Ensure this is included */}
             <Navbar />
             <div className='p-24 flex flex-col md:flex-row'>
-      <Chatbot />
-
+                <Chatbot />
                 {/* Product Details */}
                 <div className='flex flex-col w-full md:w-1/3 gap-8 items-center'>
                     <div className='text-3xl font-bold'>iPhone</div>
@@ -35,7 +36,6 @@ function Pages() {
                         className='bg-purple-50 rounded-3xl p-2.5'
                     />
                 </div>
-
                 {/* Bidding Details */}
                 <div className='flex flex-col w-full md:w-2/3 pt-10'>
                     <div className='bg-white p-5 rounded-3xl shadow mb-4' style={{ borderBottom: '6px solid #8006be' }}>
@@ -61,8 +61,6 @@ function Pages() {
                             </div>
                         </div>
                     </div>
-
-                    {/* Seller Bidding List */}
                     <div className='bg-white p-5 rounded-3xl shadow' style={{ borderBottom: '6px solid #8006be' }}>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                             {/* Seller Cards */}
@@ -87,7 +85,7 @@ function Pages() {
                                         <div>Total amount</div>
                                         <div className='font-bold'>{item.price}</div>
                                     </div>
-                                    <button onClick={handleButtonClick} className='btn p-2 rounded-full border-dark rounded-pill btn-primary'>
+                                    <button className='btn p-2  btn-primary' onClick={() => router.push("/customer/ratingform")}>
                                         Confirm Received
                                     </button>
                                 </div>
@@ -96,8 +94,7 @@ function Pages() {
                     </div>
                 </div>
             </div>
-<Footer />
-
+            <Footer />
         </div>
     );
 }

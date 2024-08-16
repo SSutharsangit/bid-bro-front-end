@@ -4,11 +4,28 @@ import Navbar from '@/app/widgets/navbar/navbar';
 import Footer from '@/app/widgets/footer/footer';
 import { useRouter } from 'next/navigation';
 import Chatbot from '@/app/widgets/chatbot/page';
-// import { GetAuctionDetails } from '../../../../redux/action/bidding_details'; // Assuming this is your API call function
+import { GetAuctionDetails } from '../../../../redux/action/bidding_details';
+
 
 function Pages() {
     const router = useRouter();
-    const [auctions, setAuctions] = useState([]);
+
+    const [auction, setAuction] = useState({});
+
+    useEffect(() => {
+        GetAuctionDetails((response) => {
+            if (response.status === 200) {
+                const auctions = response.data; // Assuming response.data is an array of auctions
+                if (auctions.length > 0) {
+                    const lastAuction = auctions[auctions.length - 1];
+                    setAuction(lastAuction);
+                }
+            } else {
+                console.error("Failed to fetch auction details", response);
+            }
+        });
+    }, []);
+
 
 
     return (
@@ -20,18 +37,17 @@ function Pages() {
                     <div className='text-3xl font-bold'>Notifications</div>
                 </div>
                 <div className='flex flex-col  pt-20 gap-5'>
-                    <div className=' rounded-3xl flex flex-col m-1 p-2'>
-                        <div className='text-2xl font-bold'>iphone 14 pro</div>
-                        <br />
-                        <div className=" p-5 bg-white rounded-3xl shadow-xl" style={{ borderBottom: '6px solid  #8006be' }}>
+                    <div className=' rounded-3xl flex m-1 p-2'>
+                        <div className=" p-5 flex flex-col items-center justify-center bg-white rounded-3xl shadow-xl" style={{ borderBottom: '6px solid  #8006be' }}>
+                            <div className='text-2xl font-bold'>{auction.productName} </div>
                             <div className='flex justify-start gap-2'>
                                 <div className='font-bold'>Expected Price :</div>
-                                <div>220000</div>
+                                <div>{auction.expectedPrice}</div>
                             </div>
-                            <div className='flex justify-start gap-2'>
+                            {/* <div className='flex justify-start gap-2'>
                                 <div className='font-bold'>Per / MRP :</div>
                                 <div>240000</div>
-                            </div>
+                            </div> */}
                             <button className='btn p-2  btn-primary' onClick={() => router.push("/customer/bidding_details")}>
                                 Show bids
                             </button>

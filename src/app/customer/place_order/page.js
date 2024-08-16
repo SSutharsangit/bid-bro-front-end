@@ -1,18 +1,47 @@
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navbar from '@/app/widgets/navbar/navbar';
 import Review from '../../widgets/review/review';
 import Footer from '@/app/widgets/footer/footer';
 import Chatbot from '@/app/widgets/chatbot/page';
+import { GetSellerbids } from '../../../../redux/action/bidding_details';
+import { useRouter } from 'next/navigation';
 
 function Pages() {
+
+  const [sellerBids, setSellerBids] = useState({});
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   GetSellerbids((response) => {
+  //     if (response.status === 200) {
+  //       setSellerBids(response.data); // Assuming response.data is an array of seller bids
+  //     } else {
+  //       console.error("Failed to fetch seller bids", response);
+  //     }
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    GetSellerbids((response) => {
+      if (response.status === 200) {
+        const sellerBids = response.data;
+        if (sellerBids.length > 0) {
+          setSellerBids(sellerBids[sellerBids.length - 1]); // Get the latest auction
+        }
+      } else {
+        console.error("Failed to fetch seller bids", response);
+      }
+    });
+  }, []);
 
   return (
     <div className=''>
       <Navbar />
       <div className='p-2' style={{ position: '' }} >
         <Chatbot />
-      <div className='font-bold fs-2 text-3xl ml-12 mt-3 ms-3'>iPhone 12</div>
+        <div className='font-bold fs-2 text-3xl ml-12 mt-3 ms-3'>iPhone 12</div>
 
         <div className=' row p-8'>
 
@@ -27,37 +56,38 @@ function Pages() {
                 />
               </div>
               <div className='grid grid-cols-1  gap-6'>
-                {[
-                  { details: 'Price Details' },
-                ].map((item, index) => (
-                  <div key={index} className='bg-light p-4 rounded-3xl shadow'>
-                    <div className='font-bold text-lg mb-2'>{item.details}</div>
+                {/* {sellerBids.map((bid, index) => ( */}
+                  <div className='bg-light p-4 rounded-3xl shadow'>
+                    <div className='font-bold text-lg mb-2'>Price Details</div>
                     <div className='flex justify-between mt-2'>
+
                       <div>Bid Price :</div>
-                      <div className='font-bold'>Rs.179000.00</div>
+                      <div className='font-bold'>{sellerBids.bidprice}</div>
                     </div>
                     <div className='flex justify-between mt-2'>
-                      <div>Delivery Charges :</div>
-                      <div className='font-bold'> Rs.500</div>
+                      <div>Delivery Charge :</div>
+                      <div className='font-bold'> {sellerBids.deliveryCharge}</div>
                     </div>
                     <div className='flex justify-between mt-2'>
                       <div>Warranty Months :</div>
-                      <div className='font-bold'> 12</div>
+                      <div className='font-bold'> {sellerBids.warrantymonths}</div>
                     </div>
                     <div className='flex justify-between mt-2'>
                       <div>Total Amount :</div>
-                      <div className='font-bold'>Rs.179500.00</div>
+                      <div className='font-bold'>{sellerBids.total}</div>
+                    </div>
+                    <div className='flex justify-between mt-2'>
+                      <div>Special note :</div>
+                      <div className='font-bold'>{sellerBids.specialnote}</div>
                     </div>
                     <button className='btn p-2 rounded-full border-dark rounded-pill btn-primary'>
                       Accept Bid
                     </button>
                   </div>
-                ))}
+                {/* ))} */}
               </div>
               <div>
-
               </div>
-
             </div>
             <div className='w-7/12 p-5'>
               <Review />
@@ -117,9 +147,8 @@ function Pages() {
               </div>
             </div>
             <div>
-              <div>Antony - #9801234</div>
-              <div>Land mark , City</div>
-              <div>Near by  Jaffna Town,Jaffna</div>
+              <div>{sellerBids.sellerName}</div>
+              <div>{sellerBids.city}</div>
             </div>
 
           </div>
@@ -153,7 +182,7 @@ function Pages() {
           </div>
         </div>
       </div>
-<Footer />
+      <Footer />
 
     </div>
   )

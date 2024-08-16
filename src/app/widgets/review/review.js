@@ -4,7 +4,7 @@ import { StarIcon } from '@heroicons/react/solid';
 
 
 function Review() {
-    const reviews = { href: '#', average: 4, totalCount: 117 }
+    const reviews = { href: '#', average: 4 }
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
@@ -45,9 +45,6 @@ function Review() {
                                     ))}
                                 </div>
                                 <p className="sr-only">{reviews.average} out of 5 stars</p>
-                                <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                                    {reviews.totalCount} reviews
-                                </a>
                             </div>
                         </div>
                     </div>
