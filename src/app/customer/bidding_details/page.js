@@ -28,7 +28,7 @@ function Pages() {
   useEffect(() => {
     GetSellerbids((response) => {
       if (response.status === 200) {
-        setSellerBids(response.data); // Assuming response.data is an array of seller bids
+        setSellerBids(response.data);  
       } else {
         console.error("Failed to fetch seller bids", response);
       }

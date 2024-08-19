@@ -1,15 +1,15 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { HomeIcon, ShoppingCartIcon, UserGroupIcon, SupportIcon, LogoutIcon, HeartIcon, BellIcon, UserIcon } from '@heroicons/react/outline';
 
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -18,6 +18,22 @@ const Navbar = () => {
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+    if (isUserMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isUserMenuOpen]);
 
   return (
     <div>
@@ -37,29 +53,25 @@ const Navbar = () => {
             Welcome,Broo
           </h1>
         </div>
-        <div className="flex items-center sm:mr-2 relative">
-        </div>
+        <div className="flex items-center sm:mr-2 relative"></div>
         <div className="block lg:hidden">
           <button
             onClick={toggleMenu}
             className="flex items-center px-3 py-2 border rounded border-gray-400 hover:border-white"
-          >
-          </button>
+          ></button>
         </div>
         <div className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${isOpen ? 'block' : 'hidden'}`}>
           <div className="text-sm lg:flex-grow">
             <div className="container mx-auto px-4 py-6 flex items-center">
               <div className="flex items-center space-x-4 ml-auto">
-              <div className="px-1 py-1 border border-gray-300 rounded-md flex items-center focus-within:ring-2 focus-within:ring-blue-500 transition-all duration-300">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-1 py-1.5 w-full outline-none"
-            />
-            {/* <input type="text" placeholder="Search.." name="search" />
-            <button type="submit"><i class="fa fa-search"></i></button> */}
-            <FontAwesomeIcon icon={faSearch} className="text-gray-400 ml-2" />
-          </div>
+                <div className="px-1 py-1 border border-gray-300 rounded-md flex items-center focus-within:ring-2 focus-within:ring-blue-500 transition-all duration-300">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="px-1 py-1.5 w-full outline-none"
+                  />
+                  <FontAwesomeIcon icon={faSearch} className="text-gray-400 ml-2" />
+                </div>
               </div>
               <div className="flex items-center space-x-4 ml-auto">
                 <Link
@@ -108,11 +120,9 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <nav className="flex space-x-4 items-center   justify-between">
-            </nav>
+            <nav className="flex space-x-4 items-center   justify-between"></nav>
           </div>
-
-          <div className="relative">
+          <div className="relative" ref={userMenuRef}>
             <button
               type="button"
               className="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -143,11 +153,6 @@ const Navbar = () => {
                 <span className="block text-sm truncate">pirasho23@gmail.com</span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
-                {/* <li>
-                  <Link href="/customer/product_details" className="block px-4 py-2 text-sm hover:bg-[#8006be] transition-all duration-300 rounded-md p-1">
-                    Product Details
-                  </Link>
-                </li> */}
                 <li>
                   <Link href="/customer/changepass"
                     className="block px-4 py-2 text-sm hover:bg-[#8006be] transition-all duration-300 rounded-md p-1">

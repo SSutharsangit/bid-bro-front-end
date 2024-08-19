@@ -1,33 +1,36 @@
-// redux/actions/ratingform.js
-import { POST_REVIEW_SUCCESS, POST_REVIEW_FAILURE } from '../reducers/types';
+import HttpInterceptor from "../../services/HttpInterceptor.js";
 
+const http = new HttpInterceptor();
 
-export const submitReview = (reviewData) => async (dispatch) => {
+export const GetReviewrate = (callback) => {
+  const endpoint = `${process.env.api_base_url}/review/get`;
   try {
-    const res = await fetch('/api/review', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(reviewData),
-    });
-    const data = await res.json();
-
-    if (data.success) {
-      dispatch({
-        type: POST_REVIEW_SUCCESS,
-        payload: data.message,
+    http
+      .get(endpoint)
+      .then((response) => {
+        callback(response);
+      })
+      .catch((error) => {
+        callback(error.response);
       });
-    } else {
-      dispatch({
-        type: POST_REVIEW_FAILURE,
-        payload: data.message,
-      });
-    }
+      
   } catch (error) {
-    dispatch({
-      type: POST_REVIEW_FAILURE,
-      payload: error.message,
-    });
+    callback(error.response);
+  }
+};
+
+export const AddReviewrate = (data,callback) => {
+  const endpoint = `${process.env.api_base_url}/review/post`;
+  try {
+    http
+      .post(endpoint,data)
+      .then((response) => {
+        callback(response);
+      })
+      .catch((error) => {
+        callback(error.response);
+      });
+  } catch (error) {
+    callback(error.response);
   }
 };

@@ -2,17 +2,49 @@
 import Image from 'next/image';
 import AuctionModal from '../auction/page'; // Adjust the path as needed
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for react-toastify
 import Footer from '@/app/widgets/footer/footer';
 import Navbar from "@/app/widgets/navbar/navbar";
 import Chatbot from '@/app/widgets/chatbot/page';
+import { GetAuctionDetails, GetSellerbids } from '../../../../redux/action/bidding_details';
 
 
 function Pages() {
     const router = useRouter();
     const [showModal, setShowModal] = useState(false);
+  const [sellerBids, setSellerBids] = useState({});
+
+
+    const [auction, setAuction] = useState({});
+
+    useEffect(() => {
+        GetAuctionDetails((response) => {
+            if (response.status === 200) {
+                const auctions = response.data; // Assuming response.data is an array of auctions
+                if (auctions.length > 0) {
+                    const lastAuction = auctions[auctions.length - 1];
+                    setAuction(lastAuction);
+                }
+            } else {
+                console.error("Failed to fetch auction details", response);
+            }
+        });
+    }, []);
+
+    useEffect(() => {
+        GetSellerbids((response) => {
+          if (response.status === 200) {
+            const sellerBids = response.data;
+            if (sellerBids.length > 0) {
+              setSellerBids(sellerBids[sellerBids.length - 1]); // Get the latest auction
+            }
+          } else {
+            console.error("Failed to fetch seller bids", response);
+          }
+        });
+      }, []);
 
     const handleButtonClick = () => {
         setShowModal(false);
@@ -63,12 +95,9 @@ function Pages() {
                     </div>
                     <div className='bg-white p-5 rounded-3xl shadow' style={{ borderBottom: '6px solid #8006be' }}>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                            {/* Seller Cards */}
-                            {[
-                                { seller: 'Starlin - #980156', price: '179500.00', save: '6,000', delivery: '500' },
-                            ].map((item, index) => (
-                                <div key={index} className='bg-light p-4 rounded-3xl shadow'>
-                                    <div className='font-bold text-lg mb-2'>{item.seller}</div>
+                           
+                                <div  className='bg-light p-4 rounded-3xl shadow'>
+                                    <div className='font-bold text-lg mb-2'>{sellerBids.sellerName}</div>
                                     <div className='flex justify-between mt-2'>
                                         <div>Method for Get</div>
                                         <div className='font-bold'>Delivery</div>
@@ -78,18 +107,25 @@ function Pages() {
                                         <div className='font-bold'>Cash-On-Delivery</div>
                                     </div>
                                     <div className='flex justify-between mt-2'>
-                                        <div>Unit </div>
-                                        <div className='font-bold'>1</div>
+                                        <div>No Of Unit </div>
+                                        <div className='font-bold'>{auction.noOfUnits}</div>
+                                    </div>
+                                    <div className='flex justify-between mt-2'>
+                                        <div>Delivery charge</div>
+                                        <div className='font-bold'>{sellerBids.deliveryCharge}.00</div>
+                                    </div>
+                                    <div className='flex justify-between mt-2'>
+                                        <div>Catch Bid Price</div>
+                                        <div className='font-bold'>{sellerBids.bidprice}.00</div>
                                     </div>
                                     <div className='flex justify-between mt-2'>
                                         <div>Total amount</div>
-                                        <div className='font-bold'>{item.price}</div>
+                                        <div className='font-bold'>{sellerBids.total}.00</div>
                                     </div>
                                     <button className='btn p-2  btn-primary' onClick={() => router.push("/customer/ratingform")}>
                                         Confirm Received
                                     </button>
                                 </div>
-                            ))}
                         </div>
                     </div>
                 </div>
