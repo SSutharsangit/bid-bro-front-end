@@ -97,7 +97,7 @@ const handleClick = () => {
           </div>
         </div>
       )}
-      {showModal && <AuctionModal showModal={showModal} setShowModal={setShowModal} />}
+      {showModal && <AuctionModal showModal={showModal} setShowModal={setShowModal} product={product}/>}
       <Footer />
     </div>
   );

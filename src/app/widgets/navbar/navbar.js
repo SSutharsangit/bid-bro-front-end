@@ -64,16 +64,6 @@ const Navbar = () => {
           <div className="text-sm lg:flex-grow">
             <div className="container mx-auto px-4 py-6 flex items-center">
               <div className="flex items-center space-x-4 ml-auto">
-                <div className="px-1 py-1 border border-gray-300 rounded-md flex items-center focus-within:ring-2 focus-within:ring-blue-500 transition-all duration-300">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    className="px-1 py-1.5 w-full outline-none"
-                  />
-                  <FontAwesomeIcon icon={faSearch} className="text-gray-400 ml-2" />
-                </div>
-              </div>
-              <div className="flex items-center space-x-4 ml-auto">
                 <Link
                   href="/customer/home"
                   className="flex items-center space-x-2 mt-4  lg:mt-0 transition-all no-underline hover:bg-[#8006be] duration-300 hover:text-white rounded-md p-1">
@@ -148,10 +138,6 @@ const Navbar = () => {
               </div>
             </button>
             <div className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 ${isUserMenuOpen ? 'block' : 'hidden'} transition-all duration-300`} id="user-dropdown">
-              <div className="px-4 py-3">
-                <span className="block text-sm">Pirashoban kulam</span>
-                <span className="block text-sm truncate">pirasho23@gmail.com</span>
-              </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>
                   <Link href="/customer/changepass"
