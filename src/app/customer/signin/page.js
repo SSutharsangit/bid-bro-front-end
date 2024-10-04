@@ -1,20 +1,43 @@
 "use client";
-import Chatbot from '@/app/widgets/chatbot/page';
-import Startfooter from '@/app/widgets/startfooter/page';
-import Startnav from '@/app/widgets/startnav/page';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min'; 
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import Link from 'next/link';
-
+import { useState } from 'react';
 
 export default function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Implement your form submission logic here
+    try {
+      const response = await fetch('http://localhost:5000/api/signin', { // Ensure this matches the backend port
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      console.log('Sign in successful:', result);
+      // Redirect or handle successful sign-in here
+    } catch (error) {
+      console.error('Error during sign-in:', error);
+      // Handle error response here
+    }
+  };
+
   return (
     <div>
-      <Startnav />
-
-      <div className="container p-24 mt-5">
-      <Chatbot />
-
+      <div className="container p-5 mt-5">
         <div className="row justify-content-center">
           <div className="col-md-6">
             <div className="card">
@@ -22,31 +45,47 @@ export default function SignIn() {
                 <h5>Sign In</h5>
               </div>
               <div className="card-body">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label htmlFor="loginEmail" className="form-label">Name</label>
-                    <input type="name" className="form-control" id="name" placeholder="Enter your Name" />
+                    <label htmlFor="loginEmail" className="form-label">Email</label>
+                    <input 
+                      type="email" 
+                      className="form-control" 
+                      id="loginEmail" 
+                      placeholder="Enter your email" 
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required 
+                    />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="loginPassword" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="loginPassword" placeholder="Enter your password" />
+                    <input 
+                      type="password" 
+                      className="form-control" 
+                      id="loginPassword" 
+                      placeholder="Enter your password" 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required 
+                    />
                   </div>
-                  <div className='flex justify-between items-center'>
-                    <button type="submit" className="btn btn-primary p-2">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <button type="submit" className="btn btn-primary">
                       Sign In
                     </button>
                     <Link
-                      href=""
-                      className="text-primary mt-7 transition-all">
+                      href="/forgot-password"
+                      className="text-primary mt-2">
                       <span className="font-bold text-purple-900">Forgot Password</span>
                     </Link>
                   </div>
 
-                  <div className="flex justify-between items-center">
+                  <div className="d-flex justify-content-between align-items-center mt-3">
                     <div>If you don't have an account</div>
                     <Link
-                      href="/customer/register"
-                      className="text-primary mt-7 transition-all">
+                      href="/pages/abc/register"
+                      className="text-primary">
                       <span className="font-bold text-purple-900">Register</span>
                     </Link>
                   </div>
@@ -57,8 +96,6 @@ export default function SignIn() {
           </div>
         </div>
       </div>
-      <Startfooter />
     </div>
-
   );
 }
