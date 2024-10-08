@@ -76,7 +76,7 @@ export default function ProductList() {
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                {product.image ? (
+                                                {/* {product.image ? (
                                                     <Image
                                                         src={product.image.startsWith("http") ? product.image : `/${product.image}`}
                                                         alt={product.name || "Product Image"}
@@ -94,7 +94,7 @@ export default function ProductList() {
                                                         className="rounded-lg"
                                                         objectFit="cover"
                                                     />
-                                                )}
+                                                )} */}
                                             </div>
                                         </div>
                                         <div>
