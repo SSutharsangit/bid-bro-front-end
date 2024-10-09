@@ -107,6 +107,10 @@ export default function SellerList({ children }) {
                     )}
                 </tbody>
             </table>
+            {/* Footer */}
+      <footer className="bg-gray-900 text-white text-center py-4">
+        <p>&copy; 2024 Electro Bid Hub. All rights reserved.</p>
+      </footer>
         </div>
         </> 
     );
