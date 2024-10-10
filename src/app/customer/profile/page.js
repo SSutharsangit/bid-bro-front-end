@@ -50,7 +50,7 @@ function Pages() {
                                 <div>20000</div>
                             </div>
                             <br />
-                            <button className='btn rounded-full border-dark rounded-pill btn-primary' onClick={() => router.push("/customer/editprofile")}>
+                            <button className='btn p-2 rounded-full border-dark rounded-pill btn-primary' onClick={() => router.push("/customer/editprofile")}>
                                 Edit Profile
                             </button>
                         </div>

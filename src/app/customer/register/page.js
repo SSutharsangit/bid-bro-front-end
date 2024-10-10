@@ -1,13 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Image from 'next/image';
 import Link from 'next/link';
-import Startnav from "@/app/widgets/startnav/page";
-import Startfooter from "@/app/widgets/startfooter/page";
-import Chatbot from "@/app/widgets/chatbot/page";
 
-export default function Checkout() {
-  const [details, setdetails] = useState({
+export default function Registration() {
+  const [details, setDetails] = useState({
     name: "",
     email: "",
     phone: "",
@@ -19,18 +15,9 @@ export default function Checkout() {
     confirmPassword: "",
   });
 
-  const [item, setItem] = useState({
-    id: 1,
-    order_id: "OrderNo12345",
-    name: "iPhone 15 265GB",
-    price: 25656.00,
-    image: "/images/iphone15.webp",
-    description: "The latest iPhone model with 265GB storage.",
-  });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setdetails((prev) => ({ ...prev, [name]: value }));
+    setDetails((prev) => ({ ...prev, [name]: value }));
   };
 
   const validateForm = () => {
@@ -40,16 +27,8 @@ export default function Checkout() {
       alert("Please fill in all the fields.");
       return false;
     }
-    if (!/^\d{11}$/.test(phone)) {
-      alert("Please enter a valid 9-digit phone number with +94.");
-      return false;
-    }
-    if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)
-    ) {
-      alert(
-        "Password must be at least 8 characters long and include uppercase, lowercase letters, numbers, and symbols."
-      );
+    if (!/^\d{10}$/.test(phone)) {
+      alert("Please enter a valid 10-digit phone number.");
       return false;
     }
     if (password !== confirmPassword) {
@@ -59,73 +38,37 @@ export default function Checkout() {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const encryptedPhone = `+94${details.phone}`;
-      console.log("Billing Details:", { ...details, phone: encryptedPhone });
-      startPayment({ ...details, phone: encryptedPhone });
+      try {
+        const response = await fetch('http://localhost:5000/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(details),
+        });
+  
+        if (!response.ok) {
+          throw new Error('Registration failed');
+        }
+  
+        const result = await response.json();
+        console.log('Registration Successful:', result);
+        alert('Registration successful!');
+        // Optionally, redirect to login page or home page
+        window.location.href = '/customer/signin';
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Registration failed. Please try again.');
+      }
     }
   };
 
-  async function startPayment(paymentDetails) {
-    if (typeof payhere === 'undefined') {
-      console.error("PayHere script is not loaded");
-      return;
-    }
-
-    payhere.onCompleted = function onCompleted(orderId) {
-      console.log("Payment completed. OrderID:" + orderId);
-    };
-
-    payhere.onDismissed = function onDismissed() {
-      console.log("Payment dismissed");
-    };
-
-    payhere.onError = function onError(error) {
-      console.log("Error:" + error);
-    };
-
-    const { phone, password, confirmPassword, ...rest } = paymentDetails;
-    const order_id = item.order_id;
-    const amount = item.price;
-    const currency = "LKR";
-    const { hash, merchant_id } = await createHash(order_id, amount, currency);
-    console.log("Hash:", hash, merchant_id);
-
-    const payment = {
-      sandbox: true,
-      merchant_id,
-      return_url: "http://localhost:3000",
-      cancel_url: "http://localhost:3000",
-      notify_url: "http://sample.com/notify",
-      order_id,
-      items: item.name,
-      amount: amount.toFixed(2),
-      currency,
-      name: details.name,
-      email: details.email,
-      phone,
-      address: details.address,
-      city: details.city,
-      country: details.country,
-      delivery_address: details.address,
-      delivery_city: details.city,
-      delivery_country: details.country,
-      custom_1: "",
-      custom_2: "",
-      hash,
-    };
-
-    payhere.startPayment(payment);
-  }
-
   return (
     <div className='h-full w-full'>
-      <Startnav />
       <div className="container mx-auto p-10">
-      <Chatbot />
-
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
           <div className="bg-white shadow-md rounded-lg p-8">
             <h1 className="text-2xl font-bold mb-4">Register</h1>
@@ -133,10 +76,10 @@ export default function Checkout() {
               {[
                 { label: "Name", type: "text", id: "name" },
                 { label: "Email", type: "email", id: "email" },
-                { label: "Phone", type: "number", id: "phone" },
+                { label: "Phone", type: "text", id: "phone" },
                 { label: "Address", type: "text", id: "address" },
                 { label: "City", type: "text", id: "city" },
-                { label: "Zip Code", type: "number", id: "zip" },
+                { label: "Zip Code", type: "text", id: "zip" },
                 { label: "Password", type: "password", id: "password" },
                 { label: "Re-enter Password", type: "password", id: "confirmPassword" },
               ].map(({ label, type, id }) => (
@@ -153,22 +96,21 @@ export default function Checkout() {
                   />
                 </div>
               ))}
-              <button type="submit" className="btn btn-primary w-full font-bold py-2 px-4 rounded">
-                Sign-Up
+              <button type="submit" className="btn p-2 btn-primary w-full font-bold py-2 px-4 rounded">
+                Register
               </button>
               <div className="flex justify-between items-center">
-                <div>If you have an account</div>
+                <div>Already have an account?</div>
                 <Link
                   href="/customer/signin"
                   className="text-primary mt-7 transition-all">
-                  <span className="font-bold text-purple-900">Log-In</span>
+                  <span className="font-bold text-purple-900">Log In</span>
                 </Link>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <Startfooter />
     </div>
   );
 }
